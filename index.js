@@ -47,6 +47,16 @@ app.post('/penduduk', (req, res) =>{
     )
 });    
 
+app.get('/hapus/:nama', (req, res) => {
+    var nama = req.params.nama;
+    koneksi.query("delete from data_penduduk where nama=?",
+    [nama], (err, hasil) => {
+        if(err) throw err;
+        res.redirect('/');
+    }
+    )
+});
+
 app.listen(port ,() => {
     console.log(`app berjalan pada port ${port}`);
 }); 
